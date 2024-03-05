@@ -3,7 +3,7 @@ package set
 import (
 	"net/http"
 
-	"github.com/tomMoulard/htransformation/pkg/types"
+	"github.com/alexandreh2ag/htransformation/pkg/types"
 )
 
 func Validate(rule types.Rule) error {

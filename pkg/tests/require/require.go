@@ -3,7 +3,7 @@ package require
 import (
 	"testing"
 
-	"github.com/tomMoulard/htransformation/pkg/tests/assert"
+	"github.com/alexandreh2ag/htransformation/pkg/tests/assert"
 )
 
 func NoError(t *testing.T, err error) {

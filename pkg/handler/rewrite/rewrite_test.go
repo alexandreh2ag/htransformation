@@ -6,10 +6,10 @@ import (
 	"regexp"
 	"testing"
 
-	"github.com/tomMoulard/htransformation/pkg/handler/rewrite"
-	"github.com/tomMoulard/htransformation/pkg/tests/assert"
-	"github.com/tomMoulard/htransformation/pkg/tests/require"
-	"github.com/tomMoulard/htransformation/pkg/types"
+	"github.com/alexandreh2ag/htransformation/pkg/handler/rewrite"
+	"github.com/alexandreh2ag/htransformation/pkg/tests/assert"
+	"github.com/alexandreh2ag/htransformation/pkg/tests/require"
+	"github.com/alexandreh2ag/htransformation/pkg/types"
 )
 
 func TestRewriteHandler(t *testing.T) {

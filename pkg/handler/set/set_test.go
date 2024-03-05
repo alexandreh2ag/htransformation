@@ -6,10 +6,10 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/tomMoulard/htransformation/pkg/handler/set"
-	"github.com/tomMoulard/htransformation/pkg/tests/assert"
-	"github.com/tomMoulard/htransformation/pkg/tests/require"
-	"github.com/tomMoulard/htransformation/pkg/types"
+	"github.com/alexandreh2ag/htransformation/pkg/handler/set"
+	"github.com/alexandreh2ag/htransformation/pkg/tests/assert"
+	"github.com/alexandreh2ag/htransformation/pkg/tests/require"
+	"github.com/alexandreh2ag/htransformation/pkg/types"
 )
 
 func TestSetHandler(t *testing.T) {

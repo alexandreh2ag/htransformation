@@ -6,10 +6,10 @@ import (
 	"regexp"
 	"testing"
 
-	"github.com/tomMoulard/htransformation/pkg/handler/rename"
-	"github.com/tomMoulard/htransformation/pkg/tests/assert"
-	"github.com/tomMoulard/htransformation/pkg/tests/require"
-	"github.com/tomMoulard/htransformation/pkg/types"
+	"github.com/alexandreh2ag/htransformation/pkg/handler/rename"
+	"github.com/alexandreh2ag/htransformation/pkg/tests/assert"
+	"github.com/alexandreh2ag/htransformation/pkg/tests/require"
+	"github.com/alexandreh2ag/htransformation/pkg/types"
 )
 
 func TestRenameHandler(t *testing.T) {
@@ -19,7 +19,8 @@ func TestRenameHandler(t *testing.T) {
 		name           string
 		rule           types.Rule
 		requestHeaders map[string]string
-		want           map[string]string
+		wantHeaders    map[string]string
+		wantHost       string
 	}{
 		{
 			name: "no transformation",
@@ -29,7 +30,7 @@ func TestRenameHandler(t *testing.T) {
 			requestHeaders: map[string]string{
 				"Foo": "Bar",
 			},
-			want: map[string]string{
+			wantHeaders: map[string]string{
 				"Foo": "Bar",
 			},
 		},
@@ -43,10 +44,26 @@ func TestRenameHandler(t *testing.T) {
 				"Foo":  "Bar",
 				"Test": "Success",
 			},
-			want: map[string]string{
+			wantHeaders: map[string]string{
 				"Foo":       "Bar",
 				"X-Testing": "Success",
 			},
+		},
+		{
+			name: "override host request",
+			rule: types.Rule{
+				Header: "X-Host",
+				Value:  "Host",
+			},
+			requestHeaders: map[string]string{
+				"Foo":    "Bar",
+				"X-Host": "example.com",
+			},
+			wantHeaders: map[string]string{
+				"Foo":  "Bar",
+				"Host": "example.com",
+			},
+			wantHost: "example.com",
 		},
 		{
 			name: "Deletion",
@@ -57,7 +74,7 @@ func TestRenameHandler(t *testing.T) {
 				"Foo":  "Bar",
 				"Test": "Success",
 			},
-			want: map[string]string{
+			wantHeaders: map[string]string{
 				"Foo":  "Bar",
 				"Test": "",
 			},
@@ -81,8 +98,11 @@ func TestRenameHandler(t *testing.T) {
 
 			rename.Handle(nil, req, test.rule)
 
-			for hName, hVal := range test.want {
+			for hName, hVal := range test.wantHeaders {
 				assert.Equal(t, hVal, req.Header.Get(hName))
+			}
+			if test.wantHost != "" {
+				assert.Equal(t, test.wantHost, req.Host)
 			}
 		})
 	}

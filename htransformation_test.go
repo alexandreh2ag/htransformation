@@ -6,10 +6,10 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	plug "github.com/tomMoulard/htransformation"
-	"github.com/tomMoulard/htransformation/pkg/tests/assert"
-	"github.com/tomMoulard/htransformation/pkg/tests/require"
-	"github.com/tomMoulard/htransformation/pkg/types"
+	plug "github.com/alexandreh2ag/htransformation"
+	"github.com/alexandreh2ag/htransformation/pkg/tests/assert"
+	"github.com/alexandreh2ag/htransformation/pkg/tests/require"
+	"github.com/alexandreh2ag/htransformation/pkg/types"
 )
 
 func TestValidation(t *testing.T) {
